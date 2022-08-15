@@ -7,13 +7,18 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * 缓存 {@link AsyncLayoutInflater} 创建的View, key 为 RecyclerView的 viewType 或者 activity 的 layout id.
+ * View Cache
  */
 public class ViewCache {
 
     private final SparseArray<Queue<View>> mViewCaches = new SparseArray<>() ;
     private OnViewCacheEmptyListener mViewCacheEmptyListener ;
 
+    /**
+     * cache view with specified type
+     * @param type
+     * @param view
+     */
     public synchronized void put(int type, View view) {
         if ( view == null ) {
             return;
@@ -25,7 +30,6 @@ public class ViewCache {
         }
         viewQueue.add(view) ;
     }
-
 
     /**
      * take view from view queue
@@ -45,16 +49,23 @@ public class ViewCache {
         return cacheView ;
     }
 
+    /**
+     * return true if has cache for specified type
+     * @param type
+     * @return
+     */
     public synchronized boolean hasCache(int type) {
         final Queue<View> viewQueue = mViewCaches.get(type) ;
         return viewQueue != null ? viewQueue.size() > 0 : false;
     }
 
-
     public void setViewCacheEmptyListener(OnViewCacheEmptyListener viewCacheEmptyListener) {
         this.mViewCacheEmptyListener = viewCacheEmptyListener;
     }
 
+    /**
+     * clear all view caches
+     */
     public synchronized void clear() {
         mViewCaches.clear();
     }

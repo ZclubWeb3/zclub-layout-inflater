@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.zclub.ws.message">
+    package="com.zclub.layout.loader.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         >
         <activity
-            android:name="com.zclub.layout.loader.app.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.ZClubWsMessage.NoActionBar">
